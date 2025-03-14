@@ -1,0 +1,6 @@
+[submodule "lib/abcc-driver-api"]
+	path = lib/abcc-driver-api
+	url = https://github.com/hms-networks/abcc-driver-api.git
+[submodule "lib/lib/abcc-driver-api"]
+	path = lib/lib/abcc-driver-api
+	url = https://github.com/hms-networks/abcc-driver-api.git
