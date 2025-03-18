@@ -38,7 +38,7 @@ void ABCC_CbfApplicationObjFirmwareAvailable_Set( BOOL8 fValue )
 {
    /* Store FW flag in non-volatile storage (NVS). */
    fFirmwareAvailable = fValue;
-   ABCC_LOG_INFO( "Candidate FW flag: %u\n", fValue );
+   LOGPRINT_Printf( "Candidate FW flag: %u\n", fValue );
 }
 
 BOOL8 ABCC_CbfApplicationObjFirmwareAvailable_Get( void )
@@ -109,6 +109,6 @@ void ABCC_CbfApplicationObj_Reset( ABP_ResetType eResetType )
 
 BOOL8 ABCC_CbfApplicationObj_ResetRequest( ABP_ResetType eResetType )
 {
-   ABCC_LOG_INFO( "Accepted reset request of type: %u\n", eResetType );
+   LOGPRINT_Printf( "Accepted reset request of type: %u\n", eResetType );
    return TRUE;
 }

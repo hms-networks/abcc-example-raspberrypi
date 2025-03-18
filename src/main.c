@@ -94,10 +94,10 @@ static int Init( FILE** const ppxDebugFile )
    LOGPRINT_TimeStamp();
    LOGPRINT_Printf( "\n" );
    LOGPRINT_Printf( "-------------------------------------------------\n" );
-   LOGPRINT_Printf( "HMS Industrial Networks\n" );
-   LOGPRINT_Printf( "Anybus CompactCom Host Application Example Code\n" );
-   LOGPRINT_Printf( "Raspberry Pi\n" );
-   LOGPRINT_Printf( "\n\n" );
+   LOGPRINT_Printf( "HMS Networks\n" );
+   LOGPRINT_Printf( "Anybus CompactCom Driver API\n" );
+   LOGPRINT_Printf( "Example Application: Raspberry Pi\n" );
+   LOGPRINT_Printf( "\n" );
 
    if( !vSetRawConsoleMode( true ) )
    {
@@ -168,10 +168,10 @@ static bool HandleInput( int* const pxReturnVal )
 */
 void ABCC_API_CbfUserInit( ABCC_API_NetworkType iNetworkType, ABCC_API_FwVersionType iFirmwareVersion )
 {
-   LOGPRINT_Printf( "\nABCC_API_CbfUserInit() entered.\n" );
+   LOGPRINT_Printf( "ABCC_API_CbfUserInit() entered.\n" );
    LOGPRINT_Printf( " - Network type:     0x%X\n", iNetworkType );
    LOGPRINT_Printf( " - Firmware version: %u.%u.%u\n", iFirmwareVersion.bMajor, iFirmwareVersion.bMinor, iFirmwareVersion.bBuild );
-   LOGPRINT_Printf( "Now calling ABCC_API_UserInitComplete() to progress from SETUP state to NW_INIT.\n\n" );
+   LOGPRINT_Printf( "Now calling ABCC_API_UserInitComplete() to progress from SETUP state to NW_INIT.\n" );
    ABCC_API_UserInitComplete();
    return;
 }
