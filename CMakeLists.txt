@@ -12,7 +12,6 @@ else()
    message(WARNING "Host ${CMAKE_SYSTEM_NAME} is not supported to build raspberry_pi_example_project.")
 endif()
 
-
 # Find the required library
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBGPIOD REQUIRED libgpiod)
@@ -73,4 +72,4 @@ target_include_directories(raspberry_pi_example_project PRIVATE
 #add_dependencies(raspberry_pi_example_project abcc_api)
 
 # Linking the Anybus CompactCom Driver library to the executable target.
-target_link_libraries(raspberry_pi_example_project PRIVATE abcc_api ${LIBGPIOD_LIBRARIES})
+target_link_libraries(raspberry_pi_example_project PRIVATE -Wl,--whole-archive abcc_api -Wl,--no-whole-archive ${LIBGPIOD_LIBRARIES})
