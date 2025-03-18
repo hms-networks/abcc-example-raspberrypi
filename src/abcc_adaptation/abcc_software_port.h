@@ -26,7 +26,7 @@
 #include <stdio.h>
 #include "abcc_types.h"
 #include "abcc_config.h"
-#include "logprint.h"
+#include "../example_application/Logprint/logprint.h"
 #include "abcc_hardware_abstraction_aux.h"
 
 #define ABCC_PORT_printf( ... )          LOGPRINT_Printf( __VA_ARGS__ )

@@ -41,7 +41,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#include "abcc_types.h"
+#include "../../abcc_adaptation/abcc_types.h"
 #include "logprint.h"
 
 #if defined( __linux__ ) && defined( __GNUC__ )

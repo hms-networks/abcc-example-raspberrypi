@@ -11,13 +11,11 @@
 #include "abcc_types.h"
 #include "abcc.h"
 #include "abcc_hardware_abstraction.h"
-#include "abcc_hardware_abstraction_aux.h"
+#include "abcc_adaptation/abcc_hardware_abstraction_aux.h"
 #include "abcc_api_select_firmware.h"
-//#include "application_data_object.h"
 #include "abcc_api.h"
-//#include "abcc_versions.h"
 
-#include "logprint.h"
+#include "example_application/Logprint/logprint.h"
 
 #include <inttypes.h>
 #include <stdbool.h>

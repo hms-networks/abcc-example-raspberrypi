@@ -120,7 +120,7 @@
 ** ABCC_LOG_SEVERITY_DEBUG_ENABLED
 **------------------------------------------------------------------------------
 */
-#define ABCC_CFG_LOG_SEVERITY         ABCC_LOG_SEVERITY_ERROR_ENABLED
+#define ABCC_CFG_LOG_SEVERITY         ABCC_LOG_SEVERITY_INFO_ENABLED
 #define ABCC_CFG_LOG_COLORS_ENABLED   1
 
 #endif  /* inclusion lock */
