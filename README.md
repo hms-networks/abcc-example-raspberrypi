@@ -12,12 +12,14 @@ To enable easy evaluation and inspiration to [Anybus CompactCom](https://www.hms
 apt install libgpiod-dev
 ```
 ### CMake
-- If you do not yet have CMake, [download](https://cmake.org/download/) and install it before continuing.
-
+- If you do not yet have CMake and want to use it for building, install it with the following command:
+```
+apt install -y cmake
+```
+*You might need to insert `sudo` before the commands if your user is not authorized for the installations.*
 ## Cloning
 ### Flag? What flag?
 This repository contain submodules [abcc-driver-api](https://github.com/hms-networks/abcc-api), ([abcc-driver](https://github.com/hms-networks/abcc-driver) and [abcc-abp](https://github.com/hms-networks/abcc-abp) that must be initialized. Therefore, pass the flag `--recurse-submodules` when cloning.
-
 ```
 git clone --recurse-submodules https://github.com/hms-networks/abcc-example-raspberrypi.git
 ```
@@ -28,7 +30,7 @@ git submodule update --init --recursive
 ```
 
 ## Build and run
-### CMake
+### Alternative 1: CMake
 This example application utilizes the Anybus CompactCom Driver API's CMake module file in a top level CMakelLists.txt file to generate a complete Visual Studio project. To generate the project, run the lines below, starting in the repository root.
 ```
 mkdir build
@@ -36,19 +38,26 @@ mkdir build
 ```
 cd build
 ```
+Generate a makefile with CMake:
 ```
 cmake ..
 ```
-
-### Make
-Run the generated *Makefile* file to compile.
+Compile the target by running the generated makefile in the build/ folder:
 ```
 make
 ```
-### Run
-Run the generated executable.
+Run the compiled executable in the build/ folder:
 ```
-./main
+./raspberry_pi_example_project
+```
+### Alternative 2: Make
+Run the *Makefile* in the repository root to compile:
+```
+make
+```
+Run the compiled executable:
+```
+./raspberry_pi_example_project
 ```
 #### (Nothing is happening...)
 Make sure that SPI is enabled in your Raspberry Pi configurations and that your CompactCom is attached correctly. See the [Adapter Board for Raspberry Pi INSTALLATION GUIDE](https://hmsnetworks.blob.core.windows.net/nlw/docs/default-source/products/anybus/manuals-and-guides---manuals/hms-scm-1202-225.pdf?sfvrsn=8c728ed7_4) for more details.
