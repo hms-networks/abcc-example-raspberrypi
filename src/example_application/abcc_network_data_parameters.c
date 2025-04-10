@@ -21,7 +21,7 @@
 #endif
 
 /*------------------------------------------------------------------------------
-** Data holder for the network data parameders (ADI)
+** Data holder for the network data parameters (ADI)
 **------------------------------------------------------------------------------
 */
 uint16_t appl_iSpeed;
@@ -59,4 +59,40 @@ const AD_MapType ABCC_API_asAdObjDefaultMap[] =
 UINT16 ABCC_API_CbfGetNumAdi( void )
 {
    return( sizeof( ABCC_API_asAdiEntryList ) / sizeof( AD_AdiEntryType ) );
+}
+
+/*------------------------------------------------------------------------------
+** Example - electric motor control loop
+**------------------------------------------------------------------------------
+*/
+void ABCC_API_CbfCyclicalProcessing()
+{
+   if( ABCC_API_AnbState() == ABP_ANB_STATE_PROCESS_ACTIVE )
+   {
+      /*
+      ** An example of ADI data handling.
+      */
+      if( appl_iSpeed > appl_iRefSpeed )
+      {
+         /*
+         ** Do something that lowers speed.
+         */
+         appl_iSpeed -= 1;
+      }
+      else if( appl_iSpeed < appl_iRefSpeed )
+      {
+         /*
+         ** Do something that increases speed.
+         */
+         appl_iSpeed += 1;
+      }
+   }
+   else
+   {
+      /*
+      ** We are not in process active, the default should be that the motor
+      ** should not run.
+      */
+      appl_iSpeed = 0;
+   }
 }

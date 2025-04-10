@@ -27,14 +27,12 @@ set(raspberry_pi_example_SRCS
    ${PROJECT_SOURCE_DIR}/src/main.c
    ${PROJECT_SOURCE_DIR}/src/example_application/abcc_network_data_parameters.c
    ${PROJECT_SOURCE_DIR}/src/example_application/implemented_callback_functions.c
-   ${PROJECT_SOURCE_DIR}/src/example_application/cyclical_processing.c
    ${PROJECT_SOURCE_DIR}/src/example_application/Logprint/logprint.c
    ${PROJECT_SOURCE_DIR}/src/abcc_adaptation/abcc_hardware_abstraction.c
 )
 
 # Include (.h) files related to the user host application.
 set(raspberry_pi_example_INCS
-   ${PROJECT_SOURCE_DIR}/src/example_application/abcc_network_data_parameters.h
    ${PROJECT_SOURCE_DIR}/src/example_application/Logprint/logprint.h
    ${PROJECT_SOURCE_DIR}/src/abcc_adaptation/abcc_driver_config.h
    ${PROJECT_SOURCE_DIR}/src/abcc_adaptation/abcc_software_port.h

@@ -52,7 +52,6 @@ LIBS += -lpthread
 SRCS  = ./src/main.c
 SRCS += ./src/abcc_adaptation/abcc_hardware_abstraction.c
 SRCS += ./src/example_application/abcc_network_data_parameters.c
-SRCS += ./src/example_application/cyclical_processing.c
 SRCS += ./src/example_application/implemented_callback_functions.c
 SRCS += ./src/example_application/Logprint/logprint.c
 
