@@ -77,7 +77,7 @@
 **------------------------------------------------------------------------------
 */
 #define EIP_OBJ_ENABLE 1
-#define PIR_OBJ_ENABLE 1
+#define PRT_OBJ_ENABLE 1
 #define MOD_OBJ_ENABLE 1
 #define ANB_FSI_OBJ_ENABLE 1
 
