@@ -1,29 +1,46 @@
 # abcc-example-raspberrypi
-This is a stand-alone example application using the Anybus CompactCom Driver API ([abcc-api](https://github.com/hms-networks/abcc-driver-api)) ported for the [Anybus CompactCom Adapter Board - Module to Raspberry Pi](https://www.hms-networks.com/p/029860-b-anybus-compactcom-adapter-board-module-to-raspberry-pi) evaluation platform.
+This is a stand-alone example application using the Anybus CompactCom Driver API ([abcc-driver-api](https://github.com/hms-networks/abcc-driver-api)) ported for the [Anybus CompactCom Adapter Board - Module to Raspberry Pi](https://www.hms-networks.com/p/029860-b-anybus-compactcom-adapter-board-module-to-raspberry-pi) evaluation platform.
+
 ### Purpose
 To enable easy evaluation and inspiration to [Anybus CompactCom](https://www.hms-networks.com/embedded-network-interfaces) prospects.
 
 ## Prerequisites
 ### System
-- This example application shall be built for and ran in a Linux environment.
+- This example application shall be built for and ran in a Linux environment, like the Raspberry Pi OS.
 ### LIBGPIOD
-- The library LIBGPIOD (major version 1.x.x) is required. This must be built from source which is found [here](https://layers.openembedded.org/layerindex/recipe/191450/).
+- The library LIBGPIOD is required. Install this library with the following command. You might need to use the `sudo` prefix if your user is not authorized for this installation.
+```
+$ <font color="red"><b>sudo</b></font> apt install libgpiod-dev
+```
 ### CMake
-- If you do not yet have CMake and want to use it for building, install it with the following command:
+- If you do not yet have CMake and want to use it for building, install it with the following command (using `sudo`):
 ```
-apt install -y cmake
+$ <font color="red"><b>sudo</b></font> apt install -y cmake
 ```
-*You might need to insert `sudo` before the commands if your user is not authorized for the installations.*
+## Enable SPI or Serial Interface on your Raspberry Pi
+### SPI
+- In the Raspberry Pi OS GUI, go to **Application Menu > Preferences > Raspberry Pi Configuration** and type your password if prompted. In the Raspberry Pi Configuration menu, go to **Interfaces** and enable SPI.
+- Or non-interactively on the command line:
+```
+$ <font color="red"><b>sudo</b></font> raspi-config nonint do_spi 1 do_serial_hw 0 do_serial_cons 0
+```
+### Serial Interface
+- In the Raspberry Pi OS GUI, go to **Application Menu > Preferences > Raspberry Pi Configuration** and type your password if prompted. In the Raspberry Pi Configuration menu, go to **Interfaces**, enable Serial Port, and disable Serial Console.
+- Or non-interactively on the command line:
+```
+$ <font color="red"><b>sudo</b></font> raspi-config nonint do_spi 0 do_serial_hw 1 do_serial_cons 0
+```
+#
 ## Cloning
 ### Flag? What flag?
-This repository contain submodules [abcc-driver-api](https://github.com/hms-networks/abcc-api), ([abcc-driver](https://github.com/hms-networks/abcc-driver) and [abcc-abp](https://github.com/hms-networks/abcc-abp) that must be initialized. Therefore, pass the flag `--recurse-submodules` when cloning.
+This repository contains submodules [abcc-driver-api](https://github.com/hms-networks/abcc-driver-api), ([abcc-driver](https://github.com/hms-networks/abcc-driver) and [abcc-abp](https://github.com/hms-networks/abcc-abp) that must be initialized. Therefore, pass the flag `--recurse-submodules` when cloning.
 ```
-git clone --recurse-submodules https://github.com/hms-networks/abcc-example-raspberrypi.git
+$ git clone --recurse-submodules https://github.com/hms-networks/abcc-example-raspberrypi.git
 ```
 #### (In case you missed it...)
 If you did not pass the flag `--recurse-submodules` when cloning, the following command can be run:
 ```
-git submodule update --init --recursive
+$ git submodule update --init --recursive
 ```
 
 ## Build and run
