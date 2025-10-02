@@ -7,10 +7,7 @@ To enable easy evaluation and inspiration to [Anybus CompactCom](https://www.hms
 ### System
 - This example application shall be built for and ran in a Linux environment.
 ### LIBGPIOD
-- The library LIBGPIOD is required. Install this library with the following command:
-```
-apt install libgpiod-dev
-```
+- The library LIBGPIOD (major version 1.x.x) is required. This must be built from source which is found [here](https://layers.openembedded.org/layerindex/recipe/191450/).
 ### CMake
 - If you do not yet have CMake and want to use it for building, install it with the following command:
 ```
