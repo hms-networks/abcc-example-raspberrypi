@@ -8,60 +8,90 @@ To enable easy evaluation and inspiration to [Anybus CompactCom](https://www.hms
 ### System
 - This example application shall be built for and ran in a Linux environment, like the Raspberry Pi OS.
 ### LIBGPIOD
-- The library LIBGPIOD is required. Install this library with the following command. Use the `sudo` prefix as suggested below if your user is not authorized for this installation.
+The library libgpiod-dev V2.x.x is required.
+
+**For Raspberry Pi OS V6.x (Debian 13 `Trixie´ based)**
+
+Install the library with the following command. Use the `sudo` prefix as suggested below if your user is not authorized for this installation.
 ```
-$ sudo apt install libgpiod-dev
+sudo apt install libgpiod-dev
 ```
+
+**For Raspberry Pi OS V5.x (Debian 12 `Bookworm´ based)**
+
+A backported version of libgpiod-dev V2.x.x is available. Here's how to install it. First, add the backports repository to your sources list by running
+```
+echo "deb https://deb.debian.org/debian bookworm-backports main" | sudo tee /etc/apt/sources.list.d/bookworm-backports.list
+```
+then update your package list with
+```
+sudo apt update
+```
+With these preparations, you can install libgpiod-dev V2.x.x by running 
+```
+sudo apt install -t bookworm-backports libgpiod-dev
+```
+Use the `sudo` prefix as suggested above if your user is not authorized for this installation.
+
+**How to check your version of Raspberry Pi OS**
+```
+lsb_release -d
+```
+
 ### CMake
-- If you do not yet have CMake and want to use it for building, install it with the following command. Use the `sudo` prefix as suggested below if your user is not authorized for this installation.
+If you do not yet have CMake and want to use it for building, install it with the following command. Use the `sudo` prefix as suggested below if your user is not authorized for this installation.
 ```
-$ sudo apt install -y cmake
+sudo apt install -y cmake
 ```
 ### Enable SPI or Serial Interface on your Raspberry Pi
-- SPI: In the Raspberry Pi OS GUI, go to **Application Menu > Preferences > Raspberry Pi Configuration** and type your password if prompted. In the Raspberry Pi Configuration menu, go to **Interfaces** and enable SPI.
-- Serial Interface: In the Raspberry Pi OS GUI, go to **Application Menu > Preferences > Raspberry Pi Configuration** and type your password if prompted. In the Raspberry Pi Configuration menu, go to **Interfaces**, enable Serial Port, and disable Serial Console.
-#
+**For Raspberry Pi OS V6.x (Debian 13 `Trixie´ based)**
+- SPI: In the Raspberry Pi OS GUI, click on the Raspberry Pi icon in the top-left corner of the screen. Then navigate to **Preferences > Control Centre** and type your password if prompted. In Control Centre, go to **Interfaces** and enable **SPI**.
+- Serial Interface: In the Raspberry Pi OS GUI, click on the Raspberry Pi icon in the top-left corner of the screen. Then navigate to **Preferences > Control Centre** and type your password if prompted. In Control Centre, go to **Interfaces**, enable **Serial Port**, and disable Serial Console.
+
+**For Raspberry Pi OS V5.x (Debian 12 `Bookworm´ based)**
+- SPI: In the Raspberry Pi OS GUI, click on the Raspberry Pi icon in the top-left corner of the screen. Then navigate to **Preferences > Raspberry Pi Configuration** and type your password if prompted. In the Raspberry Pi Configuration menu, go to **Interfaces** and enable **SPI**.
+- Serial Interface: In the Raspberry Pi OS GUI, click on the Raspberry Pi icon in the top-left corner of the screen.  Then navigate to **Preferences > Raspberry Pi Configuration** and type your password if prompted. In the Raspberry Pi Configuration menu, go to **Interfaces**, enable **Serial Port**, and disable Serial Console.
 ## Cloning
 ### Flag? What flag?
 This repository contains submodules [abcc-driver-api](https://github.com/hms-networks/abcc-driver-api), ([abcc-driver](https://github.com/hms-networks/abcc-driver) and [abcc-abp](https://github.com/hms-networks/abcc-abp) that must be initialized. Therefore, pass the flag `--recurse-submodules` when cloning.
 ```
-$ git clone --recurse-submodules https://github.com/hms-networks/abcc-example-raspberrypi.git
+git clone --recurse-submodules https://github.com/hms-networks/abcc-example-raspberrypi.git
 ```
 #### (In case you missed it...)
 If you did not pass the flag `--recurse-submodules` when cloning, the following command can be run:
 ```
-$ git submodule update --init --recursive
+git submodule update --init --recursive
 ```
 
 ## Build and run
 ### Alternative 1: CMake
 This example application utilizes the Anybus CompactCom Driver API's CMake module file in a top level CMakelLists.txt file to generate a complete Visual Studio project. To generate the project, run the lines below, starting in the repository root.
 ```
-$ mkdir build
+mkdir build
 ```
 ```
-$ cd build
+cd build
 ```
 Generate a makefile with CMake:
 ```
-$ cmake ..
+cmake ..
 ```
 Compile the target by running the generated makefile in the build/ folder:
 ```
-$ make
+make
 ```
 Run the compiled executable in the build/ folder:
 ```
-$ ./raspberry_pi_example_project
+./raspberry_pi_example_project
 ```
 ### Alternative 2: Make
 Run the *Makefile* in the repository root to compile:
 ```
-$ make
+make
 ```
 Run the compiled executable:
 ```
-$ ./raspberry_pi_example_project
+./raspberry_pi_example_project
 ```
 #### (Nothing is happening...)
 Make sure that the SPI or serial interface is enabled on your Raspberry Pi configuration and that your CompactCom is attached correctly. See the [Adapter Board for Raspberry Pi INSTALLATION GUIDE](https://hmsnetworks.blob.core.windows.net/nlw/docs/default-source/products/anybus/manuals-and-guides---manuals/hms-scm-1202-225.pdf?sfvrsn=8c728ed7_4) for more details.
