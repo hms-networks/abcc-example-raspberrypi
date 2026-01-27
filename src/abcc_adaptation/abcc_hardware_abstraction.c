@@ -121,7 +121,8 @@ typedef struct hal_PlatformCfgEntryTag
 static struct gpiod_chip*           hal_psGpioChip = NULL;
 static struct gpiod_request_config* hal_psGpioReqConf = NULL;
 static struct gpiod_line_config*    hal_psGpioLineConf = NULL;
-static struct gpiod_line_settings*  hal_psGpioLineSettgs = NULL;
+static struct gpiod_line_settings*  hal_psGpioLineSettings = NULL;
+#define hal_psGpioLineSettgs hal_psGpioLineSettings
 static struct gpiod_line_request*   hal_psGpioReqLines = NULL;
 
 /*------------------------------------------------------------------------------
