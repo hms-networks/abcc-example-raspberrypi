@@ -122,7 +122,6 @@ static struct gpiod_chip*           hal_psGpioChip = NULL;
 static struct gpiod_request_config* hal_psGpioReqConf = NULL;
 static struct gpiod_line_config*    hal_psGpioLineConf = NULL;
 static struct gpiod_line_settings*  hal_psGpioLineSettings = NULL;
-#define hal_psGpioLineSettgs hal_psGpioLineSettings
 static struct gpiod_line_request*   hal_psGpioReqLines = NULL;
 
 /*------------------------------------------------------------------------------
@@ -351,8 +350,8 @@ static BOOL hal_GpioInit( void )
    /*
    ** Get a reference for the GPIO line settings.
    */
-   hal_psGpioLineSettgs = gpiod_line_settings_new();
-   if ( hal_psGpioLineSettgs == NULL )
+   hal_psGpioLineSettings = gpiod_line_settings_new();
+   if ( hal_psGpioLineSettings == NULL )
    {
       xErrnoCopy = errno;
       fprintf( stderr, "HAL: gpiod_line_settings_new() failed - %s\n", ABCC_HAL_GetErrMsg( xErrnoCopy ) );
@@ -364,21 +363,21 @@ static BOOL hal_GpioInit( void )
       /*
       ** Populate GPIO line setting with direction, bias flags, default state.
       */
-      if ( gpiod_line_settings_set_direction( hal_psGpioLineSettgs, hal_psPlatformCfg->psGpioCfgList[xIndex].xRequestType ) < 0 )
+      if ( gpiod_line_settings_set_direction( hal_psGpioLineSettings, hal_psPlatformCfg->psGpioCfgList[xIndex].xRequestType ) < 0 )
       {
          xErrnoCopy = errno;
          fprintf( stderr, "HAL: gpiod_line_settings_set_direction() failed - %s\n", ABCC_HAL_GetErrMsg( xErrnoCopy ) );
          return( FALSE );
       }
 
-      if ( gpiod_line_settings_set_bias( hal_psGpioLineSettgs, hal_psPlatformCfg->psGpioCfgList[xIndex].xFlags ) < 0 )
+      if ( gpiod_line_settings_set_bias( hal_psGpioLineSettings, hal_psPlatformCfg->psGpioCfgList[xIndex].xFlags ) < 0 )
       {
          xErrnoCopy = errno;
          fprintf( stderr, "HAL: gpiod_line_settings_set_bias() failed - %s\n", ABCC_HAL_GetErrMsg( xErrnoCopy ) );
          return( FALSE );
       }
 
-      if ( gpiod_line_settings_set_output_value( hal_psGpioLineSettgs, hal_psPlatformCfg->psGpioCfgList[xIndex].xDefaultState ) < 0 )
+      if ( gpiod_line_settings_set_output_value( hal_psGpioLineSettings, hal_psPlatformCfg->psGpioCfgList[xIndex].xDefaultState ) < 0 )
       {
          xErrnoCopy = errno;
          fprintf( stderr, "HAL: gpiod_line_settings_set_output_value() failed - %s\n", ABCC_HAL_GetErrMsg( xErrnoCopy ) );
@@ -389,7 +388,7 @@ static BOOL hal_GpioInit( void )
       ** Populate GPIO line configuration with the line number and its settings.
       ** Parameter "1" tells to treat one line at a time.
       */
-      if ( gpiod_line_config_add_line_settings( hal_psGpioLineConf, &hal_psPlatformCfg->psGpioCfgList[xIndex].xLineNum, 1, hal_psGpioLineSettgs ) < 0 )
+      if ( gpiod_line_config_add_line_settings( hal_psGpioLineConf, &hal_psPlatformCfg->psGpioCfgList[xIndex].xLineNum, 1, hal_psGpioLineSettings ) < 0 )
       {
          xErrnoCopy = errno;
          fprintf( stderr, "HAL: gpiod_line_config_add_line_settings() failed - %s\n", ABCC_HAL_GetErrMsg( xErrnoCopy ) );
@@ -399,16 +398,16 @@ static BOOL hal_GpioInit( void )
       /*
       ** Set GPIO line settings to default values.
       */
-      gpiod_line_settings_reset( hal_psGpioLineSettgs );
+      gpiod_line_settings_reset( hal_psGpioLineSettings );
    }
 
    /*
    ** GPIO line settings reference no longer needed.
    */
-   if ( hal_psGpioLineSettgs != NULL )
+   if ( hal_psGpioLineSettings != NULL )
    {
-      gpiod_line_settings_free( hal_psGpioLineSettgs );
-      hal_psGpioLineSettgs = NULL;
+      gpiod_line_settings_free( hal_psGpioLineSettings );
+      hal_psGpioLineSettings = NULL;
    }
 
    /*
@@ -422,7 +421,7 @@ static BOOL hal_GpioInit( void )
       return( FALSE );
    }
 
-  /*
+   /*
    ** GPIO request configuration reference no longer needed.
    */
    if ( hal_psGpioReqConf != NULL )
@@ -440,7 +439,7 @@ static BOOL hal_GpioInit( void )
       hal_psGpioLineConf = NULL;
    }
 
-  /*
+   /*
    ** GPIO chip configuration no longer needed,
    ** from here on, we will only need the hal_psGpioReqLines reference.
    */
@@ -1682,3 +1681,4 @@ void ABCC_HAL_TimerUnlock( void )
 
    return;
 }
+
