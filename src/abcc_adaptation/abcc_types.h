@@ -1,19 +1,34 @@
 /*******************************************************************************
-********************************************************************************
-**                                                                            **
-** ABCC Starter Kit version 1640ed3 (2025-03-05)                              **
-**                                                                            **
-** Delivered with:                                                            **
-**    ABP            c799efc (2024-05-14)                                     **
-**    ABCC Driver    576777a (2025-03-06)                                     **
-**                                                                            */
-/*******************************************************************************
 ** Copyright 2025-present HMS Industrial Networks AB.
 ** Licensed under the MIT License.
 ********************************************************************************
 ** File Description:
 ** Definition of ABCC types
 ********************************************************************************
+*/
+
+/*------------------------------------------------------------------------------
+** Data type mnemonics:
+**
+** The variable names throughout this code use the following mnemonics
+** to specify the data type of the variable:
+**
+**    a     Array
+**    b     8-bit integer
+**    c     Character
+**    d     Double-precision float
+**    e     Enumeration
+**    f     Boolean (flag)
+**    i     16-bit integer
+**    l     32-bit integer
+**    ll    64-bit integer
+**    p     Pointer
+**    r     Single-precision float
+**    s     Structure
+**    u     Union
+**    n     Function
+**    x     Not known / not relevant
+**------------------------------------------------------------------------------
 */
 
 #ifndef ABCC_TD_H
