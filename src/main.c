@@ -138,9 +138,9 @@ static bool HandleInput( int* const pxReturnVal )
             return( false );
          }
          else if(abConsoleInput[ i ] == 't' || abConsoleInput[ i ] == 'T')
-         {ABCC_API_SelectFirmware(
-   ABCC_API_NW_TYPE_PROFINET,
-   NULL );}
+         {
+            ABCC_API_SelectFirmware( ABCC_API_NW_TYPE_PROFINET, NULL );
+         }
       }
    }
    else if( xCount == 0 )
@@ -202,7 +202,7 @@ int main()
 
       fRun = HandleInput( &xReturnVal );
    }
- 
+
    /*
    ** Shut down the abcc-api and the CompactCom.
    */
